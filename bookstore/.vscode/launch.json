@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run bookstore",
+      "type": "java",
+      "request": "launch",
+      "mainClass": "com.sap.teched.cap.bookstore.Application",
+      "projectName": "bookstore",
+      "preLaunchTask": "Build bookstore",
+      "env": {
+        "exec.java.build": "true",
+        "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"/home/user/projects/bookstore\"}"
+      }
+    }
+  ]
+}

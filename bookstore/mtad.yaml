@@ -1,0 +1,44 @@
+_schema-version: 3.3.0
+version: 0.0.1
+ID: bookstore-dido
+
+modules: 
+- name: bookstore-dido-db
+  type: com.sap.xs.hdi
+  path: db/
+  requires:
+  - name: bookstore-hana-dido
+  parameters:
+    disk-quota: 512M
+    memory: 256M
+- name: bookstore-dido
+  type: application
+  path: srv/target/bookstore-1.0-SNAPSHOT.jar 
+  requires:
+  - name: logging
+  provides:
+  - name: srv_api
+    properties:
+      url: ${default-url}
+#- name: app-router
+#  type: application
+#    parameters:
+#      docker-image: static/approuter-image:latest
+#    properties:
+#      some-config: ${server_api/url}
+#    requires: 
+#    - name: srv_api
+
+resources:
+- name: logging
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: application-logs
+    service-plan: lite
+- name: bookstore-hana-dido
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+
+    
